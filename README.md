@@ -1,4 +1,4 @@
-# # AtliQ Hardware - Sales Insights Dashboard Project
+# AtliQ Hardware - Sales Insights Dashboard Project
 
 This project presents sales insights for **AtliQ Hardware**, an India-based company that supplies computer hardware and peripherals to clients such as Surge Stores and Nomad Stores across the country.
 
@@ -37,7 +37,20 @@ The sales data was provided in a MySQL database and analyzed using SQL.
 ```sql
 -- Total number of customers
 SELECT COUNT(*) FROM sales.customers;
+
+-- Transactions for Chennai (market_code = 'Mark001')
+SELECT * FROM sales.transactions WHERE market_code = 'Mark001';
+
+-- Total revenue in 2020
+SELECT SUM(sales.transactions.sales_amount)
+FROM sales.transactions
+INNER JOIN sales.date
+ON sales.transactions.order_date = sales.date.date
+WHERE sales.date.year = 2020
+  AND (sales.transactions.currency = 'INR' OR sales.transactions.currency = 'USD');
 ```
+
+Similar queries were used to extract sales by city, year, month, and currency.
 
 ## Data Cleaning and ETL Process
 
@@ -48,6 +61,16 @@ Data was cleaned and transformed using **Power Query** in **Power BI Desktop**. 
 **•** Filtered out negative and zero values from the `transactions` table  
 **•** Converted all USD transactions to INR using a fixed exchange rate (`1 USD = 75 INR`)  
 **•** Handled inconsistencies in currency formatting (`USD` vs `USD\r`)  
+
+### Conversion Formula Used
+
+```m
+= Table.AddColumn(
+    #"Filtered Rows",
+    "norm_sales_amount",
+    each if [currency] = "USD" then [sales_amount] * 75 else [sales_amount]
+)
+```
 
 ## Dashboard Toolkit
 
@@ -69,10 +92,8 @@ Data was cleaned and transformed using **Power Query** in **Power BI Desktop**. 
 **•** The Sales Director now has instant access to accurate and reliable sales insights  
 **•** Helps identify underperforming regions and products  
 **•** Saves time and reduces dependency on manual reporting  
-**•** Enables fact-based strategic planning and forecasting
+**•** Enables fact-based strategic planning and forecasting  
 
 ## Dashboard Screenshot
 
 ![Dashboard Screenshot]()
-
-
