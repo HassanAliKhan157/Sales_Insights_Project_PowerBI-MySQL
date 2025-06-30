@@ -80,4 +80,4 @@ Impact and Benefits
 • Enables fact-based strategic planning and forecasting
 
 Dashboard Screenshot
-![Dashboard Screenshot]()
+![Dashboard Screenshot](https://github.com/HassanAliKhan157/Sales_Insights_Project_PowerBI-MySQL/blob/main/AtliQ%20Dashboard.png)
