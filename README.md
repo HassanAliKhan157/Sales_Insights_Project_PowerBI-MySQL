@@ -97,3 +97,7 @@ Data was cleaned and transformed using **Power Query** in **Power BI Desktop**. 
 ## Dashboard Screenshot
 
 ![Dashboard Screenshot](https://github.com/HassanAliKhan157/Sales_Insights_Project_PowerBI-MySQL/blob/main/AtliQ%20Dashboard.png)
+
+## Source of Data
+
+[Link to Data Source](https://codebasics.io/resources/sales-insights-data-analysis-project)
